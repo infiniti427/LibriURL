@@ -30,5 +30,37 @@
         "text": "4 + 4 = 8"
       }
     ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "Si cambio mi nombre"
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "text": "Cambiar tu nombre es una decisión importante que puede tener varias consecuencias. Aquí te presento algunos puntos a considerar:\n\n**Proceso Legal y Administrativo:**\n\n*   **Trámite judicial:** En la mayoría de los casos, necesitarás presentar una solicitud ante un tribunal local para cambiar legalmente tu nombre. Esto implica presentar documentos y comparecer ante un juez.\n*   **Costo:** El proceso no es gratuito. Deberás pagar una tarifa por la solicitud de cambio de nombre, que puede variar según el lugar donde la presentes.\n*   **Publicación:** En algunos lugares, es posible que debas publicar el cambio de nombre en un periódico durante un mes.\n*   **Actualización de documentos:** Una vez que obtengas la orden judicial, deberás actualizar tus documentos de identidad, como tu tarjeta de Seguro Social, licencia de conducir, pasaporte, cuentas bancarias, tarjetas de crédito, registros de votación y documentos de seguro.\n\n**Consideraciones Personales y Profesionales:**\n\n*   **Nuevo comienzo:** Cambiar tu nombre puede representar un nuevo comienzo y la oportunidad de dejar atrás recuerdos del pasado.\n*   **Impacto emocional:** Puede aumentar tu confianza en ti mismo y ser un paso significativo hacia un nuevo capítulo en la vida.\n*   **Confusión:** Es posible que las personas que te conocen tengan dificultades para adaptarse a tu nuevo nombre.\n*   **Firma:** Tendrás que crear una nueva firma.\n*   **Nombre profesional:** Si tienes una carrera establecida, cambiar tu nombre podría generar confusión entre tus colegas y afectar tus oportunidades de negocio.\n*   **Menores:** Si tienes hijos, cambiar tu nombre podría generar confusión o problemas emocionales para ellos. Es importante considerar sus sentimientos antes de tomar una decisión.\n\n**Otras implicaciones:**\n\n*   **Impuestos:** El nombre en tu declaración de impuestos debe coincidir con los registros de la Administración del Seguro Social. De lo contrario, podrías experimentar demoras en tu reembolso.\n*   **Antecedentes:** Los jueces no permitirán que cambies tu nombre si se considera que es en detrimento de otra persona, o para evitar deudas u obligaciones.\n\n**Cómo cambiar tu nombre:**\n\n1.  **Deed poll:** En algunos lugares, puedes cambiar tu nombre mediante un \"deed poll\", que es un documento legal que prueba el cambio de nombre.\n2.  **Matrimonio o divorcio:** En el caso de un matrimonio o divorcio, el cambio de nombre se produce al presentar el acta de matrimonio o la sentencia de divorcio.\n\nSi estás considerando cambiar tu nombre, te recomiendo investigar los requisitos específicos en tu área y consultar con un abogado si tienes preguntas sobre el proceso o las implicaciones legales.\n"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "que es lo primero que te he dicho"
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "text": "Lo primero que me dijiste fue \"2+2\".\n"
+      }
+    ]
   }
 ]
