@@ -1,0 +1,178 @@
+Aquí tienes un ejemplo básico de juego Snake implementado en HTML/CSS/JavaScript. El juego incluye movimiento, crecimiento, colisiones y detección de fin de partida:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego de la Serpiente</title>
+    <style>
+        body {
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            text-align: center;
+            margin: 0;
+        }
+        canvas {
+            background: #111;
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #0f0;
+        }
+        #score {
+            font-size: 1.2em;
+            margin: 10px;
+        }
+        #game-over {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 15px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #0f0;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0a0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de la Serpiente</h1>
+    <div id="score">Score: 0</div>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div id="game-over" class="hidden">¡Game Over! <br> <button onclick="restartGame()">Volver a Jugar</button></div>
+    
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreDisplay = document.getElementById('score');
+        const gameOverDisplay = document.getElementById('game-over');
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize;
+        
+        let snake = [{x: 10, y: 10}];
+        let apple = {x: 5, y: 5};
+        let velocity = {x: 0, y: 0};
+        let score = 0;
+        let gameOver = false;
+        
+        function gameLoop() {
+            if (gameOver) return;
+            
+            // Mover la serpiente
+            const head = {x: snake[0].x + velocity.x, y: snake[0].y + velocity.y};
+            
+            // Colisión con bordes
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                endGame();
+                return;
+            }
+            
+            // Colisión consigo misma
+            for (let segment of snake) {
+                if (head.x === segment.x && head.y === segment.y) {
+                    if (snake.length > 1) endGame();
+                }
+            }
+            
+            snake.unshift(head);
+            
+            // Comer manzana
+            if (head.x === apple.x && head.y === apple.y) {
+                score++;
+                scoreDisplay.textContent = "Score: " + score;
+                placeApple();
+            } else {
+                snake.pop();
+            }
+            
+            drawGame();
+        }
+        
+        function drawGame() {
+            // Limpiar lienzo
+            ctx.fillStyle = '#111';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Dibujar serpiente
+            ctx.fillStyle = '#0f0';
+            for (let segment of snake) {
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize-2, gridSize-2);
+            }
+            
+            // Dibujar manzana
+            ctx.fillStyle = '#f00';
+            ctx.fillRect(apple.x * gridSize, apple.y * gridSize, gridSize-2, gridSize-2);
+        }
+        
+        function placeApple() {
+            apple.x = Math.floor(Math.random() * tileCount);
+            apple.y = Math.floor(Math.random() * tileCount);
+            
+            // Asegurarse de que la manzana no aparezca en la serpiente
+            for (let segment of snake) {
+                if (segment.x === apple.x && segment.y === apple.y) {
+                    placeApple();
+                    return;
+                }
+            }
+        }
+        
+        function endGame() {
+            gameOver = true;
+            gameOverDisplay.style.display = 'block';
+        }
+        
+        function restartGame() {
+            snake = [{x: 10, y: 10}];
+            velocity = {x: 0, y: 0};
+            score = 0;
+            scoreDisplay.textContent = "Score: 0";
+            gameOverDisplay.style.display = 'none';
+            gameOver = false;
+            placeApple();
+        }
+        
+        // Detectar teclas
+        document.addEventListener('keydown', e => {
+            if ((e.key === 'ArrowUp' || e.key === 'w') && velocity.y !== 1) {
+                velocity = {x: 0, y: -1};
+            } else if ((e.key === 'ArrowDown' || e.key === 's') && velocity.y !== -1) {
+                velocity = {x: 0, y: 1};
+            } else if ((e.key === 'ArrowLeft' || e.key === 'a') && velocity.x !== 1) {
+                velocity = {x: -1, y: 0};
+            } else if ((e.key === 'ArrowRight' || e.key === 'd') && velocity.x !== -1) {
+                velocity = {x: 1, y: 0};
+            }
+        });
+        
+        // Iniciar el juego
+        placeApple();
+        setInterval(gameLoop, 100);
+    </script>
+</body>
+</html>
+```
+
+El juego tiene las siguientes características:
+1. Controles con teclado (flechas o WASD)
+2. Sistema de puntuación
+3. Colisión con bordes y con la serpiente misma
+4. Aparece una nueva manzana cuando la comen
+5. Pantalla de Game Over con botón de reinicio
+6. Velocidad moderada (100ms entre movimientos)
+7. Estilo monótono (esquemas de color negro-verde para nostalgia 80's)
+
+Puedes personalizar fácilmente el juego ajustando:
+- Velocidad del juego (cambiando el valor en `setInterval(gameLoop, 100)`)
+- Tamaño del canvas (cambiando `width` y `height` en el `<canvas>`)
+- Colores y estilos en la sección `<style>`
+- Tamaño de los cuadrados (ajustando la variable `gridSize`)
